@@ -1,3 +1,28 @@
+# generate-pkgbuild-action
+
+This action generates PKGBUILD of the go-program for `makepkg`.
+
+```yaml
+- name: Make PKGBUILD
+  if: startsWith(github.ref, 'refs/tags/')
+  uses: kyoh86/generate-pkgbuild-action@v1
+  with:
+    # (REQUIRED) License name
+    license: mit
+
+    # An email address of the author
+    email: me@kyoh86.dev
+
+    # A description for the package
+    description: "A sample package"
+
+    # Call `go run -tags man ./cmd/{entrypoint} man` to generate man page
+    makeman: true
+```
+
+A sample of the full-workflow:
+
+```yaml
 name: Generate PKGBUILD
 on:
   push:
@@ -49,3 +74,4 @@ jobs:
         with:
           name: package
           path: "*_PKGBUILD.tar.gz"
+```
