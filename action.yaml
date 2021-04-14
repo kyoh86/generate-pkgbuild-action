@@ -1,0 +1,23 @@
+name: Generate PKGBUILD for a go package
+author: kyoh86
+description: Generate PKGBUILD for a go package
+branding:
+  color: blue
+  icon: chevron-up
+inputs:
+  makeman:
+    description: |
+      Make man file with entrypoint.
+      If this is `true`, "go run -tags man ./cmd/${pkgname} man"
+      will be called to create man files
+    required: false
+  email:
+    description: Email address of author
+  description:
+    description: A description of the package
+  license:
+    description: License name
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
